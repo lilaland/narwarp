@@ -4,11 +4,13 @@ Research and a decided plan for turning Narwarp into a terminal-based agentic ha
 
 - **Readable version (artifact):** https://claude.ai/artifact/CWFTRYmzN5qg8v9qoGup1U (private to its owner)
 - **Full report:** [narwarp-agentic-harness-design.md](narwarp-agentic-harness-design.md), with 85 citations
+- **Design addendum:** [design-addendum.md](design-addendum.md). It adds Tusk the conductor, the vault mirror, the cloud and Mac Studio work lanes, and the getting-started tracks, and wins where it disagrees with the report.
+- **Seed backlog:** [seed-backlog.md](seed-backlog.md), the first 20 tickets with acceptance criteria
 - **Research notes:** [research/](research/), eight files with about 82,000 words and 780 sources
 
 ## Decision
 
-Freeze this Rust fork at the `phase-4/watcher-and-polish` tip (`b9b9e760`) as the daily terminal, and skip merging Zap. Build the harness as a standalone Python daemon, `narwarpd`. It is the only writer of one SQLite store and exposes an MCP server, an `nw` CLI and a Claude Code hook sink. Claude Code runs as background sessions (`claude --bg`, `claude agents --json`, HTTP hooks, `claude attach` in tmux). Ollama gets small schema-bound jobs: triage, digests, and a quarantined reader for untrusted text. A Textual TUI is the first of several clients. The fork's designs move to the new repo, but its WarpUI code stays here: the redactor, chunker, vault/RAG schema, vault jobs and the Tusk persona.
+Freeze this Rust fork at the `phase-4/watcher-and-polish` tip (`b9b9e760`) as the daily terminal, and skip merging Zap. Build the harness as a standalone Python daemon, `narwarpd`. It is the only writer of one SQLite store and exposes an MCP server, an `nw` CLI and a Claude Code hook sink. Claude Code runs as background sessions (`claude --bg`, `claude agents --json`, HTTP hooks, `claude attach` in tmux). Ollama gets small schema-bound jobs: triage, digests, and a quarantined reader for untrusted text. A Textual TUI is the first of several clients. Tusk, a conductor session, is the conversational front door. It proposes triage, plans and dispatches, and the reconciler applies only what you accept. Everything is also mirrored into a git-backed markdown vault at `~/vault`, which you can edit in Obsidian. The fork's designs move to the new repo, but its WarpUI code stays here: the redactor, chunker, vault/RAG schema, vault jobs and the Tusk persona.
 
 ## First slice
 
