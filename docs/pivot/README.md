@@ -6,6 +6,8 @@ Research and a decided plan for turning Narwarp into a terminal-based agentic ha
 - **Full report:** [narwarp-agentic-harness-design.md](narwarp-agentic-harness-design.md), with 85 citations
 - **Design addendum:** [design-addendum.md](design-addendum.md). It adds Tusk the conductor, the vault mirror, the cloud and Mac Studio work lanes, and the getting-started tracks, and wins where it disagrees with the report.
 - **Seed backlog:** [seed-backlog.md](seed-backlog.md), the first 20 tickets with acceptance criteria
+- **Managing session:** [managing-session.md](managing-session.md), the message that starts the Claude Code session leading Phase 1 development
+- **Harness repo seed:** [harness-seed/](harness-seed/), the README, AGENTS.md, CLAUDE.md and .gitignore for `lilaland/narwarp-harness`
 - **Research notes:** [research/](research/), eight files with about 82,000 words and 780 sources
 
 ## Decision

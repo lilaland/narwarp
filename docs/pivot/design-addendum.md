@@ -125,6 +125,12 @@ Tracks that can run side by side without touching the same files. **At most thre
 | F · TUI | The Textual board against C's API, with sample data and snapshot tests | Cloud session | C's API contract |
 | G · Integrations | Linear, GitHub, the cloud lane | Cloud, then Mac Studio | The first-slice exit test |
 
+**Update, 2026-10-13 (later the same day).** The Mac Studio has 36 GB, which puts it in the 32 GB model tier listed in the harness `AGENTS.md`. Installation happens after development, which changes two tracks:
+- Track B becomes the install checklist instead of running first.
+- Track E builds the Claude lane against a fake supervisor now. The real wiring and Tusk come at install.
+
+Everything else is built and tested in cloud sessions. The development work is led by the managing session described in [managing-session.md](managing-session.md).
+
 **Order:**
 1. Days 0–1: tracks 0, A and B.
 2. C runs alone until its schema and API contract are frozen.

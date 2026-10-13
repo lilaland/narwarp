@@ -4,12 +4,22 @@ The first twenty Narwarp tickets, grouped by the tracks in [design-addendum.md](
 
 Format per ticket: track, where it runs, dependencies, then acceptance criteria. Agents may tick a criterion only with evidence attached: a test run, a commit or a PR link.
 
+## Status
+
+The managing session keeps this block current.
+
+- **Done:** NW-1 (GitHub access restored on 2026-10-13)
+- **In progress:** NW-2 (the owner is creating the repo), NW-4 (Linear admin request)
+- **Next:** NW-7, NW-8, NW-9 in order. Then the API contract is frozen, and work fans out to tracks D, F and the rest of C and E
+- **At install time:** NW-3, NW-6, the real Claude wiring in NW-16, and NW-17
+- **Blocked:** none
+
 ## Track 0 · Unblock (you)
 
 ### NW-1 · Restore GitHub access for Claude sessions
 - Track: 0 · Runs in: you · Depends on: none
-- [ ] GitHub reconnected at claude.ai/connect-github, and the Claude GitHub App installed for `lilaland`
-- [ ] A Claude session can push `claude/blissful-thompson-2zvpq8` to `lilaland/narwarp`, which currently holds an unpushed docs commit
+- [x] GitHub reconnected, and the Claude GitHub App installed for `lilaland` (owner, 2026-10-13)
+- [x] A Claude session can push to `lilaland/narwarp` (branch `claude/blissful-thompson-2zvpq8` pushed on 2026-10-13)
 
 ### NW-2 · Create the harness repo
 - Track: 0 · Runs in: you · Depends on: NW-1
@@ -21,7 +31,8 @@ Format per ticket: track, where it runs, dependencies, then acceptance criteria.
 - [ ] Claude Code via the native installer, logged in with `/login` at the Mac's own screen
 - [ ] Ollama, uv, tmux, gh and Tailscale installed; system sleep off; `~/code` and `~/vault` created outside Documents
 - [ ] From the laptop over Tailscale SSH, `claude agents --json` and `ollama list` both work
-- [ ] Unified memory size recorded in the repo, since it sets the local model tier
+- [x] Unified memory size recorded in the repo: 36 GB, which puts it in the 32 GB model tier (see `AGENTS.md`)
+- Note: done at install time, after development
 
 ### NW-4 · Ask the Linear admin for the OAuth app
 - Track: 0 · Runs in: you · Depends on: none
@@ -37,6 +48,7 @@ Format per ticket: track, where it runs, dependencies, then acceptance criteria.
 
 ### NW-6 · Phase 0 spike report
 - Track: B · Runs in: Mac Studio session, plus you for the reboot · Depends on: NW-3, NW-5
+- Note: runs at install time, after development. `INSTALL.md` turns these checks into the install runbook
 - [ ] `claude --bg -n t1 -w t1 --settings <hooks file>` fires the HTTP hooks, and only in that session
 - [ ] `claude agents --json --all` returns `state`, `status`, `waitingFor`, `sessionId` and `name`
 - [ ] A `PermissionRequest` HTTP hook fires in a background session and can allow or deny
@@ -106,13 +118,14 @@ Format per ticket: track, where it runs, dependencies, then acceptance criteria.
 ## Track E · Claude lane, then Tusk (Mac Studio)
 
 ### NW-16 · Claude lane adapter
-- Track: E · Runs in: Mac Studio session · Depends on: NW-6, NW-11
+- Track: E · Runs in: cloud first, against a fake supervisor; Mac Studio at install · Depends on: NW-11 (fake), NW-6 (real)
+- [ ] A fake supervisor mimics `claude --bg`, `claude agents --json` and HTTP hook delivery as documented in the design, and the adapter passes against it in CI
 - [ ] Dispatch with `claude --bg`, a worktree per ticket, and hooks passed per session
 - [ ] Hook sink and `claude agents --json` poller keep run state current; respawn on boot
 - [ ] First-slice loop works end to end: `nw add` → session → board posts → approve in the TUI
 
 ### NW-17 · Tusk v0
-- Track: E · Runs in: Mac Studio session · Depends on: NW-16
+- Track: E · Runs in: Mac Studio session, at install time · Depends on: NW-16
 - [ ] Conductor workspace with `CLAUDE.md`, the Tusk persona and rules
 - [ ] Read tools plus `propose_ticket`, `propose_triage` and `propose_dispatch`; proposals appear in Needs you
 - [ ] Fresh session each morning, seeded from the conductor handoff; wakes only for your messages and ritual windows
